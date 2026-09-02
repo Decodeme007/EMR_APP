@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ title }} - TLC EMR{% endblock %}
+
+{% block content %}
+<div class="container-fluid p-0">
+    <div class="d-flex align-items-center gap-2 mb-3">
+        <a href="{% url 'patients:patient_list' %}" class="btn btn-light btn-sm rounded-circle">
+            <i class="bi bi-arrow-left"></i>
+        </a>
+        <h4 class="fw-bold mb-0">{{ title }}</h4>
+    </div>
+
+    <div class="card border-0 shadow-sm p-4">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <h5 class="fw-bold text-primary border-bottom pb-2"><i class="bi bi-person-lines-fill me-2"></i>1. Admission & Demographics</h5>
+                </div>
+                <div class="col-12 col-md-6">{{ form.admission_type|as_crispy_field }}</div>
+                <div class="col-12 col-md-6">{{ form.admission_date|as_crispy_field }}</div>
+                <div class="col-12 col-md-6">{{ form.full_name|as_crispy_field }}</div>
+                <div class="col-6 col-md-3">{{ form.age|as_crispy_field }}</div>
+                <div class="col-6 col-md-3">{{ form.gender|as_crispy_field }}</div>
+                <div class="col-12 col-md-6">{{ form.phone|as_crispy_field }}</div>
+                <div class="col-12 col-md-6">{{ form.aadhaar_number|as_crispy_field }}</div>
+                <div class="col-12">{{ form.address|as_crispy_field }}</div>
+
+                <div class="col-12 my-3">
+                    <h5 class="fw-bold text-primary border-bottom pb-2"><i class="bi bi-heart-pulse me-2"></i>2. Clinical & Substance Info</h5>
+                </div>
+                <div class="col-12 col-md-6">{{ form.addiction_type|as_crispy_field }}</div>
+                <div class="col-12 col-md-6">{{ form.assigned_doctor|as_crispy_field }}</div>
+                <div class="col-12 col-md-6">{{ form.medical_history|as_crispy_field }}</div>
+                <div class="col-12 col-md-6">{{ form.diagnosis|as_crispy_field }}</div>
+
+                <div class="col-12 my-3">
+                    <h5 class="fw-bold text-primary border-bottom pb-2"><i class="bi bi-telephone-plus me-2"></i>3. Emergency & Legal Guardian</h5>
+                </div>
+                <div class="col-12 col-md-4">{{ form.emergency_contact_name|as_crispy_field }}</div>
+                <div class="col-12 col-md-4">{{ form.emergency_contact_phone|as_crispy_field }}</div>
+                <div class="col-12 col-md-4">{{ form.emergency_contact_relation|as_crispy_field }}</div>
+
+                <div class="col-12 col-md-4">{{ form.guardian_name|as_crispy_field }}</div>
+                <div class="col-12 col-md-4">{{ form.guardian_phone|as_crispy_field }}</div>
+                <div class="col-12 col-md-4">{{ form.guardian_relation|as_crispy_field }}</div>
+                
+                <div class="col-12 col-md-6">{{ form.school_name|as_crispy_field }}</div>
+                <div class="col-12 col-md-6">{{ form.grade|as_crispy_field }}</div>
+                <div class="col-12 col-md-6">{{ form.legal_reason|as_crispy_field }}</div>
+                <div class="col-12 col-md-6">{{ form.legal_remarks|as_crispy_field }}</div>
+
+                <div class="col-12 my-3">
+                    <h5 class="fw-bold text-primary border-bottom pb-2"><i class="bi bi-pen me-2"></i>4. Consents</h5>
+                </div>
+                <div class="col-12 col-md-6">{{ form.self_consent|as_crispy_field }}</div>
+                <div class="col-12 col-md-6">{{ form.digital_signature|as_crispy_field }}</div>
+            </div>
+
+            <div class="d-flex justify-content-end gap-2 mt-4">
+                <a href="{% url 'patients:patient_list' %}" class="btn btn-light">Cancel</a>
+                <button type="submit" class="btn btn-primary px-4">
+                    <i class="bi bi-check-circle-fill me-1"></i> Save Admission
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

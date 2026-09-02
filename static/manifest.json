@@ -1,0 +1,18 @@
+{
+  "name": "TLC Rehab EMR Manager",
+  "short_name": "TLC Rehab",
+  "description": "Multi-Tenant Clinical EMR & Rehab Management System",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0d6efd",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/icons/heart-pulse-fill.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
