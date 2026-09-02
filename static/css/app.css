@@ -1,59 +1,145 @@
 :root {
-  --primary-color: #0d6efd;
-  --primary-dark: #0a58ca;
+  --primary-color: #2563eb;
+  --primary-dark: #1d4ed8;
+  --primary-light: #eff6ff;
+  --primary-gradient: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
   --bg-surface: #f8fafc;
   --card-bg: #ffffff;
-  --text-main: #1e293b;
+  --text-main: #0f172a;
   --text-muted: #64748b;
-  --bottom-nav-height: 64px;
+  --border-subtle: #e2e8f0;
+  --bottom-nav-height: 68px;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
   background-color: var(--bg-surface);
   color: var(--text-main);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* App Header */
+/* App Top Header */
 .app-header {
-  height: 60px;
-  background: #ffffff;
-  border-bottom: 1px solid #e2e8f0;
+  height: 62px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-subtle);
   position: sticky;
   top: 0;
   z-index: 1020;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
-/* Sidebar for Desktop */
+.clinic-badge-icon {
+  width: 38px;
+  height: 38px;
+  background: var(--primary-light);
+  color: var(--primary-color);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+/* Main Workspace Flex Layout */
+.main-wrapper {
+  display: flex;
+  width: 100%;
+  min-height: calc(100vh - 62px);
+  overflow-x: hidden;
+}
+
+/* Desktop Sidebar */
 .desktop-sidebar {
   width: 250px;
-  min-height: calc(100vh - 60px);
+  min-width: 250px;
   background: #ffffff;
-  border-right: 1px solid #e2e8f0;
+  border-right: 1px solid var(--border-subtle);
+  padding: 1.25rem 0.75rem;
 }
 
 .desktop-sidebar .nav-link {
   color: var(--text-muted);
   font-weight: 500;
+  font-size: 0.925rem;
   padding: 0.75rem 1rem;
-  border-radius: 8px;
-  margin: 2px 8px;
+  border-radius: 10px;
+  margin-bottom: 4px;
   display: flex;
   align-items: center;
   gap: 12px;
+  transition: all 0.15s ease;
 }
 
-.desktop-sidebar .nav-link:hover,
+.desktop-sidebar .nav-link:hover {
+  color: var(--primary-color);
+  background-color: var(--primary-light);
+}
+
 .desktop-sidebar .nav-link.active {
   color: var(--primary-color);
-  background-color: #eff6ff;
+  background-color: var(--primary-light);
+  font-weight: 600;
 }
 
-/* Main Container Area */
+/* Main Content Area */
 .app-content {
-  flex-grow: 1;
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
   padding: 1.25rem;
+  overflow-x: hidden;
+}
+
+/* Metric Cards */
+.metric-card {
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  background: #ffffff;
+  padding: 1.1rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.metric-card:active {
+  transform: scale(0.98);
+}
+
+.metric-icon-box {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+/* Modern Native Mobile Cards */
+.mobile-patient-card {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  transition: all 0.15s ease;
+}
+
+.mobile-patient-card:active {
+  transform: scale(0.985);
+  background-color: #f8fafc;
 }
 
 /* Mobile Bottom Navigation Bar */
@@ -62,51 +148,86 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  height: var(--bottom-nav-height);
-  background: #ffffff;
-  border-top: 1px solid #e2e8f0;
+  height: calc(var(--bottom-nav-height) + var(--safe-bottom));
+  padding-bottom: var(--safe-bottom);
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid var(--border-subtle);
   display: flex;
   justify-content: space-around;
   align-items: center;
   z-index: 1030;
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
 }
 
 .mobile-bottom-nav .nav-item {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   text-decoration: none;
   color: var(--text-muted);
-  font-size: 0.75rem;
+  font-size: 0.725rem;
   font-weight: 500;
   flex: 1;
   padding: 6px 0;
+  transition: all 0.15s ease;
 }
 
 .mobile-bottom-nav .nav-item i {
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   margin-bottom: 2px;
+  transition: transform 0.15s ease;
 }
 
 .mobile-bottom-nav .nav-item.active {
   color: var(--primary-color);
+  font-weight: 600;
 }
 
-/* On mobile, add padding at bottom so content isn't covered by bottom nav */
+.mobile-bottom-nav .nav-item.active i {
+  transform: translateY(-2px);
+}
+
+.mobile-intake-btn {
+  background: var(--primary-gradient);
+  color: #ffffff !important;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+  margin-top: -16px;
+  transition: transform 0.15s ease;
+}
+
+.mobile-intake-btn:active {
+  transform: scale(0.92);
+}
+
+/* Mobile Responsive Tweaks */
 @media (max-width: 767.98px) {
   body {
-    padding-bottom: calc(var(--bottom-nav-height) + 16px);
+    padding-bottom: calc(var(--bottom-nav-height) + var(--safe-bottom) + 12px);
   }
   .app-content {
-    padding: 1rem 0.75rem;
+    padding: 0.85rem;
+  }
+  .metric-card {
+    padding: 0.85rem;
+  }
+  .metric-card h2 {
+    font-size: 1.5rem !important;
   }
 }
 
-/* Modern Card Styling */
+/* General Cards & Utility */
 .card {
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
 }
 
@@ -116,9 +237,38 @@ body {
   font-weight: 600;
 }
 
-/* Touch-friendly Action Buttons */
 .btn {
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 0.5rem 1rem;
   font-weight: 500;
+  transition: all 0.15s ease;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+/* Touch-friendly Nav Pills Scroll */
+.nav-pills {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+.nav-pills::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+/* Prevent iOS & Android zoom-in on input focus */
+input, select, textarea {
+  font-size: 16px !important;
+}
+
+@media (min-width: 768px) {
+  input, select, textarea {
+    font-size: 0.95rem !important;
+  }
+}
+
+.table-responsive {
+  border-radius: 12px;
+  -webkit-overflow-scrolling: touch;
 }
