@@ -412,45 +412,7 @@ Planned/possible improvements include:
 
 ---
 
-## 📸 Screenshots
 
-Add screenshots of the major application screens here.
-
-Example:
-
-```text
-screenshots/
-├── login.png
-├── dashboard.png
-├── patient-registration.png
-├── patient-profile.png
-├── clinical-record.png
-└── billing.png
-```
-
-Then add them to the README:
-
-```markdown
-![Dashboard](screenshots/dashboard.png)
-
-![Patient Registration](screenshots/patient-registration.png)
-```
-
----
-
-## 👨‍💻 Project
-
-**IPD Electronic Medical Record System**
-
-Built using:
-
-**Python · Django · PostgreSQL · Bootstrap · HTML/CSS**
-
-Repository:
-
-[EMR_APP on GitHub](https://github.com/Decodeme007/EMR_APP?utm_source=chatgpt.com)
-
----
 
 ## 📄 License
 
